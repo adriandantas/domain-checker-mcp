@@ -1,57 +1,49 @@
 # Domain Checker MCP Server
 
-A Model Context Protocol (MCP) server that provides domain availability checking capabilities for Claude and other AI assistants.
+A powerful Model Context Protocol (MCP) server that enables AI assistants like Claude to check domain availability and registration status across multiple top-level domains (TLDs).
 
 ## Features
 
-- Check if a domain is available for registration
-- Query for available domains across multiple top-level domains (TLDs)
-- RDAP (Registration Data Access Protocol) integration for detailed domain registration information
-- DNS verification for better accuracy
-- Support for multiple TLDs including .com, .net, .org, .io, .ai, and more
+- 🔍 Real-time domain availability checking
+- 🌐 Multi-TLD support (.com, .net, .org, .io, .ai, .dev, .app, .co)
+- 📊 Detailed domain registration information via RDAP
+- 🔒 DNS verification for accurate results
+- ⚡ Fast and reliable domain status queries
+- 🔄 Batch domain checking capabilities
 
 ## Prerequisites
 
 - Python 3.8 or higher
-- Windows (for the provided batch scripts)
+- Windows operating system
+- Claude Desktop installed
 - Basic understanding of MCP server configuration
-- An installation of Claude Desktop
+- Internet connection for domain queries
 
-## Installation
+## Quick Start
 
-1. Clone this repository
+1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/domain-checker-mcp.git
    cd domain-checker-mcp
    ```
 
-2. Install dependencies using one of these methods:
-   
-   Using the setup script (Windows):
+2. Run the setup script:
    ```bash
    setup.bat
    ```
 
-   Manual installation:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Unix/MacOS
-   # OR
-   .\venv\Scripts\activate  # On Windows
-   pip install -r requirements.txt
-   ```
+3. Follow the on-screen instructions to configure Claude Desktop
 
-## Configuration
+## Detailed Installation
 
-### Claude Desktop Configuration
+### Step 1: Environment Setup
+The setup script (`setup.bat`) will:
+- Create a Python virtual environment
+- Install all required dependencies
+- Generate the correct configuration for Claude Desktop
 
-Run the setup script first, which will provide you with the correct configuration to add to your Claude Desktop configuration file:
-
-```bash
-setup.bat
-```
-
-The script will output the necessary JSON configuration with the correct paths for your installation. For example:
+### Step 2: Claude Desktop Configuration
+After running the setup script, you'll receive a JSON configuration snippet. Add this to your Claude Desktop configuration file:
 
 ```json
 {
@@ -60,96 +52,84 @@ The script will output the necessary JSON configuration with the correct paths f
       "command": "cmd",
       "args": [
         "/c",
-        "C:\\Users\\YourUsername\\domain-checker-mcp\\domain-checker-server.bat"
+        "C:\\Path\\To\\domain-checker-mcp\\domain-checker-server.bat"
       ],
-      "cwd": "C:\\Users\\YourUsername\\domain-checker-mcp"
+      "cwd": "C:\\Path\\To\\domain-checker-mcp"
     }
   }
 }
 ```
 
-Note: Your actual paths will be different based on where you installed the server.
+## Usage Guide
 
-## Usage
+### Basic Domain Checking
+Use the `check_domain` tool to verify domain availability:
+- "Check if example.com is available"
+- "Is anthropic.ai registered?"
+- "Tell me the registration status of google.com"
 
-The domain-checker MCP server provides two main tools:
-
-1. **check_domain**: Checks if a specific domain is available
-   - Example queries:
-     - "Check if example.com is available"
-     - "Is anthropic.ai registered?"
-     - "Tell me the registration status of google.com"
-
-2. **check_tlds**: Searches for available domains across multiple TLDs
-   - Example queries:
-     - "Find available domains for the keyword 'assistant'"
-     - "What TLDs are available for the name 'myproject'"
-     - "Show me domain options for 'techstart'"
+### Multi-TLD Search
+Use the `check_tlds` tool to find available domains across different TLDs:
+- "Find available domains for the keyword 'assistant'"
+- "What TLDs are available for the name 'myproject'"
+- "Show me domain options for 'techstart'"
 
 ## Supported TLDs
 
-Currently supported top-level domains include:
-- .com
-- .net
-- .org
-- .io
-- .ai
-- .dev
-- .app
-- .co
-(Add or modify this list based on actual supported TLDs)
+The server supports checking availability for the following top-level domains:
+- .com (Commercial)
+- .net (Network)
+- .org (Organization)
+- .io (Indian Ocean)
+- .ai (Artificial Intelligence)
+- .dev (Development)
+- .app (Applications)
+- .co (Company/Commercial)
 
-## Error Handling
+## Troubleshooting Guide
 
-Common error messages and their solutions:
-- "Connection timeout" - Check your internet connection
-- "Rate limit exceeded" - Wait a few minutes before trying again
-- "Invalid domain name" - Ensure the domain follows correct formatting
+### Common Issues
 
-## Project Structure
+1. **Setup Fails**
+   - Ensure Python is installed and in PATH
+   - Verify virtual environment creation
+   - Check internet connection
 
-```
-domain-checker-mcp/
-├── .gitignore                      # Git ignore file
-├── README.md                       # Documentation
-├── requirements.txt                # Python dependencies
-├── setup_mcp_env.bat              # Environment setup script
-├── domain-checker-server.bat      # Server startup script
-└── simple-domain-checker-server.py # Main MCP server implementation
-```
+2. **Server Won't Start**
+   - Verify all dependencies are installed
+   - Check configuration paths
+   - Ensure virtual environment is activated
 
-## Troubleshooting
+3. **Domain Checks Fail**
+   - Verify internet connection
+   - Check for rate limiting
+   - Ensure domain format is correct
 
-To modify the server or add new features:
+### Development
 
-1. Activate the virtual environment
+To modify or enhance the server:
+
+1. Activate the virtual environment:
    ```bash
    call venv\Scripts\activate.bat
    ```
 
-2. Make your changes to the Python script
-3. Test the server by running:
+2. Make your changes to `simple-domain-checker-server.py`
+
+3. Test the server:
    ```bash
    python simple-domain-checker-server.py
    ```
 
-Common issues:
-- If setup fails, ensure Python is installed and added to your PATH
-- Check that all required dependencies are listed in requirements.txt
-- Verify that your virtual environment is properly activated
-- Make sure all paths in your Claude Desktop configuration are correct
-
 ## License
 
-[MIT License](LICENSE)
-
-## Acknowledgements
-
-- Built using the Model Context Protocol (MCP)
-- Uses RDAP for domain registration information
-- Uses DNS resolver for verification
-- Powered by dnspython and requests libraries
+This project is licensed under the [MIT License](LICENSE).
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
